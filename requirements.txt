@@ -1,1 +1,4 @@
 snakemake
+tensorflow
+keras
+matplotlib
