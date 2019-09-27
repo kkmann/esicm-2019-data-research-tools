@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>Practical tools to make data research easier and better</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="@kevin_kunzmann" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Practical tools to make data research easier and better
+## ESICM Tech Lounge
+### <span class="citation">@kevin_kunzmann</span>
+### MRC-BSU, University of Cambridge
+### 2019/09/30
+
+---
+
+class: inverse, middle
+
+
+
+# Who am I?
+
+* Mathematician/Statistician with keen interest in 'Data Science' and machine (deep) learning
+
+* Worked several years as analyst in two multi-centric studies: 4C and CENTER-TBI
+
+* Convinced that open science/source is the future
+
+* Sometimes frustrated by the adoption of modern *tooling* esp. in academia
+
+
+
+
+
+---
+class: inverse, middle
+# Outline
+
+1. Where are we headed? 
+
+2. Data, Data, Data!
+
+2. Literate Programming
+
+3. Workflow Management
+
+4. Version Control and Collaboration
+
+5. Dependency Management
+
+6. Demo
+
+
+
+
+
+---
+class: center, middle
+# https://bit.ly/2jT4BYM
+
+&lt;iframe 
+    src="https://hackmd.io/DUTDnbl7RZmGZhQVOski0A?view" 
+    width="1000px" 
+    height="450px"&gt;
+&lt;/iframe&gt; 
+
+
+
+
+
+---
+# Data research as software development
+
+- modern empricial research is *highly data-driven*
+
+- make sure that data infrastructure is adequate
+
+- multiple stake-holders (analysts, non-tech experts)
+
+- anything beyond absolute basics: *complex analysis scripts*
+
+- agile development (changing requirements/hypotheses)
+
+- quality control - reproducibility? 
+
+&lt;br&gt;
+
+&gt; *Data research is essentially about writing a piece of software that
+turns data into a manuscript `\(\leadsto\)` adopt lessons learnt from software 
+develoment!*
+
+
+
+---
+# 'Reproducible Research' + 'Open Science'
+
+[TURING WAY]
+
+
+
+
+---
+class: inverse, middle, center
+# 'Data is the new oil'
+
+
+
+---
+# Data = new oil is the perfect methaphor:
+
+- need large enough storage facility (data base = tanks)
+
+- storage must be accessible (data access = pipelines)
+
+- infrastructure must be maintained continuously or becomes 'sticky/stale'
+
+- security!
+
+- on the first look, all data looks the same but there are different kinds of
+data (and oil!) that cannot be mixed easily (longitudinal, cross sectional)
+
+&gt; Data = new oil is quite a good methaphor since it indicates 
+practical storage/processing problems as well
+
+
+
+---
+# Data management considerations
+
+- Have a plan and involve domain experts, early!
+
+- Make sure data bases are flexible enough to adapt to changing requirements 
+
+- Think about storage of intermediate data products
+
+- Make sure everything is accessible in a systematic way (APIs?)
+
+- Ensure continuous support maintainance over the entire project timeline
+
+- Do not underestimate the effort of data curation!
+
+- Beware that compex data bases evolve over time, how do you handle versioning/versioned access of your data?
+
+
+
+
+
+---
+class: inverse, middle
+# 'Literate Programming'
+
+&gt; *"I believe that the time is ripe for significantly better documentation of 
+programs, and that we can best achieve this by considering programs to be works
+of literature. Hence, my title: 'Literate Programming'."* Donald Knuth, 1984
+
+
+
+
+
+---
+# 'Literate Programming'
+
+- script file: code + comments, ugly
+
+- 'literate program': present code, output (graphs, tables), and explanatory text
+as equals
+
+- prime example 'notebooks': interactive cell-style programming
+
+- can be exported to .pdf/.html/etc.
+
+
+---
+# Notebooks
+
+.pull-left[
+
+Pros
+
+1. can be exported to .pdf/.html/etc.
+
+1. interactive coding style 
+
+1. Edit Markdown source and refresh browser to see updated slides;
+]
+
+.pull-right[
+
+Cons
+
+1. usually plain notebook files in cryptic format (need custom software to display)
+
+1. interactivity can lead to order-of-execution errors
+
+1. limited formatting flexibility
+]
+
+
+
+---
+# IPython Notebook
+
+[demo]
+
+
+
+
+
+
+
+
+---
+# One step further: markdown + pandoc
+
+&lt;iframe 
+    src="https://markdown-it.github.io/"
+    width="1000px"
+    height="500px"&gt;
+&lt;/iframe&gt;
+
+
+
+
+---
+# One step further: markdown + pandoc
+
+- this presentation is authored in a markdown flavor!
+
+- easy to use, source document is readable even wirth just a text editor
+
+- minimal subset of formatting options can be converted to richer formats via
+pandoc (+ templates)
+
+- allows anthing from fancy slides to polished .pdf reports!
+
+
+---
+# One step further: markdown + pandoc
+
+- pandoc: convert markdown to any output format (.html, .pdf (LaTeX), .docx)
+
+- only need a tool to capture code expressions in markdown file and write
+outputs back, then used pandoc to produce final document
+
+- knitr for R, pweave for Python
+
+- knitr also supports Python (and even R/Python mixed sessions!)
+
+
+
+---
+# Example: pdf report with knitr + Python
+
+[live demo in binder]
+
+
+
+
+
+
+---
+# Workflow automation
+
+- complex analyses often require multiple outputs (plots, tables, reports)
+
+- often intermediate files, data sets used by multiple plots etc
+
+- interdependent steps, need to maintain right order
+
+- difficult to update everything if something changes early on
+
+- welcome to workflow hell
+
+
+
+---
+# Workflow automation
+
+- bear in mind: analysis = program to go from data to outputs
+
+- should be possible to just specify what you want and have the program figure out what needs to be done (exploiting shared intermediate output)
+
+- caching is super helpful during **development** not so much for reproducibility
+
+- simple bash script (maybe with if clauses for checking for files) may be sufficient in simple cases
+
+- for anything more serious, use a dedicated workflow engine
+
+
+
+
+
+---
+# snakemake
+
+- python tool inspired by GNU make
+
+- represents workflows as DAGs, automatically takes care of running jobs in parallel, caching etc
+
+- can be used with slurm scheduler to exploit parallelism on a slurm cluster
+
+- python-like syntax, easy to learn
+
+
+
+
+---
+# Version Control (git)
+
+- time machine for entire projects
+
+- distributed (no central server)
+
+- robust (designed for wortk on Linux kernel, now also used by Microsoft!)
+
+- **the** standard VCS .
+
+
+
+---
+# Code hosting 
+
+- git is a command line tool
+
+- GitHub.com/GitLab.com are code hosting platforms that make it more productive
+
+- 
+
+
+
+
+
+---
+# GitHub.com example repo
+
+[demo, show features]
+
+
+
+---
+# Dependency management
+
+- source code is fine versioned
+
+- workflow is automated
+
+- what could go wrong?
+
+- lots of software dependencies (R/Python/tensorflow/snakemake/LaTeX/...)
+
+- all changing quickly - how can we make sure that the exact computing environment can be replicated in the future?
+
+- package managers not sufficient since cross-language/system level dependencies not captured (openssl version e.g.)
+
+
+
+
+---
+# Solution: Containerization
+
+- better: isolate everything but the bare operating system (linux!)
+
+- think: lightweight virtual machine 
+  - no 'hard drive'
+  - no hardware virtualization (use host system) - fast!
+  - images are single files, easily sharable!
+  
+- those must be complicated...
+
+
+
+---
+# Singularity container file
+
+[example]
+  
+  
+  
+---
+# Singularity vs. Docker
+
+- ...
+
+
+
+---
+# Live demo on our HPC
+
+...
+
+
+
+
+---
+# Summary
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

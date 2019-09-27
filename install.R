@@ -1,0 +1,5 @@
+install.packages('xaringan')
+install.packages('reticulate')
+install.packages('tensorflow')
+tensorflow::install_tensorflow()
+install.packages('keras')

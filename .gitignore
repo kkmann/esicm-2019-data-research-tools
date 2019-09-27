@@ -1,0 +1,5 @@
+*.pdf
+
+.Rproj.user/
+esicm-workshop-2019.Rproj
+.ipynb_checkpoints/
