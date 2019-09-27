@@ -1,4 +1,3 @@
-snakemake
 tensorflow
 keras
 matplotlib
