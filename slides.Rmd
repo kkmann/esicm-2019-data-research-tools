@@ -378,9 +378,9 @@ outputs back, then used pandoc to produce final document
 - better: isolate everything but the bare operating system (linux!)
 
 - think: lightweight virtual machine 
-  - no 'hard drive'
-  - no hardware virtualization (use host system) - fast!
-  - images are single files, easily sharable!
+- no 'hard drive'
+- no hardware virtualization (use host system) - fast!
+- images are single files, easily sharable!
   
 - those must be complicated...
 
@@ -396,7 +396,33 @@ outputs back, then used pandoc to produce final document
 ---
 # Singularity vs. Docker
 
-- ...
+.pull-left[
+
+Docker
+
+1. made containers 'sexy'
+
+2. widely used by industry to run microservices
+
+3. requires root access to build and **run** $\leadsto$ incompatible with HPC systems
+
+]
+
+.pull-right[
+
+Singularity
+
+1. Relatively new (2016) 'Docker for HPC'
+
+2. Key difference: **root only required for building** containers!
+
+3. Geared towards HPC: reproducible, portable computing environment - run 
+arbitrary software on your HPC without bothering your admin! 
+
+4. Integrates with workflow management engines (snakemake, nextflow, etc.) and
+HPC
+
+]
 
 
 
@@ -409,4 +435,20 @@ outputs back, then used pandoc to produce final document
 
 
 ---
+class: inverse
 # Summary
+
+- No free lunch: 'Data Research' is complex!
+
+- 'Data Research' is software development, be smart and use their tools!
+
+- Reproducibility of complex analyses paramount to enable thorough review and reuse!
+
+- Literate programming can ease analyst/investigator communication by 
+streamlining reliable report generation
+
+- Data hosting + code hosting + containerization + version control can facilitate
+collaboration on complex projects
+
+- Better code quality $\leadsto$ more enjoyable coding + more confidence in
+results

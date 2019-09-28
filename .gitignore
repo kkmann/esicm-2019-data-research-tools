@@ -9,3 +9,6 @@ report.pdf
 analysis-notebook.html
 
 .snakemake
+
+Vagrantfile
+.vagrant

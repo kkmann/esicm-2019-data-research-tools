@@ -224,7 +224,7 @@ Cons
 
 
 ---
-# One step further: markdown + pandoc
+# One step further: markdown + knitr + pandoc
 
 &lt;iframe 
     src="https://markdown-it.github.io/"
@@ -236,11 +236,11 @@ Cons
 
 
 ---
-# One step further: markdown + pandoc
+# One step further: markdown + knitr + pandoc
 
-- this presentation is authored in a markdown flavor!
+- this presentation is authored in markdown (`slides.Rmd`)!
 
-- easy to use, source document is readable even wirth just a text editor
+- easy to use, source document is readable even with just a text editor
 
 - minimal subset of formatting options can be converted to richer formats via
 pandoc (+ templates)
@@ -258,9 +258,11 @@ pandoc (+ templates)
 - only need a tool to capture code expressions in markdown file and write
 outputs back, then used pandoc to produce final document
 
-- knitr for R, pweave for Python
+- knitr primarily for R, pweave for Python
 
 - knitr also supports Python (and even R/Python mixed sessions!)
+
+
 
 
 
@@ -281,11 +283,13 @@ outputs back, then used pandoc to produce final document
 
 - often intermediate files, data sets used by multiple plots etc
 
-- interdependent steps, need to maintain right order
+- interdependent steps, need to maintain right order of execution
 
 - difficult to update everything if something changes early on
 
-- welcome to workflow hell
+- long running steps should be cached during development
+
+- welcome to workflow hell!
 
 
 
@@ -313,9 +317,9 @@ outputs back, then used pandoc to produce final document
 
 - python tool inspired by GNU make
 
-- represents workflows as DAGs, automatically takes care of running jobs in parallel, caching etc
+- represents workflows as DAGs, automatically takes care of running jobs in parallel, caching etc.
 
-- can be used with slurm scheduler to exploit parallelism on a slurm cluster
+- can be used with slurm scheduler to exploit parallelism on an HPC slurm cluster
 
 - python-like syntax, easy to learn
 
@@ -379,9 +383,9 @@ outputs back, then used pandoc to produce final document
 - better: isolate everything but the bare operating system (linux!)
 
 - think: lightweight virtual machine 
-  - no 'hard drive'
-  - no hardware virtualization (use host system) - fast!
-  - images are single files, easily sharable!
+- no 'hard drive'
+- no hardware virtualization (use host system) - fast!
+- images are single files, easily sharable!
   
 - those must be complicated...
 
@@ -397,7 +401,33 @@ outputs back, then used pandoc to produce final document
 ---
 # Singularity vs. Docker
 
-- ...
+.pull-left[
+
+Docker
+
+1. made containers 'sexy'
+
+2. widely used by industry to run microservices
+
+3. requires root access to build and **run** `\(\leadsto\)` incompatible with HPC systems
+
+]
+
+.pull-right[
+
+Singularity
+
+1. Relatively new (2016) 'Docker for HPC'
+
+2. Key difference: **root only required for building** containers!
+
+3. Geared towards HPC: reproducible, portable computing environment - run 
+arbitrary software on your HPC without bothering your admin! 
+
+4. Integrates with workflow management engines (snakemake, nextflow, etc.) and
+HPC
+
+]
 
 
 
@@ -410,7 +440,23 @@ outputs back, then used pandoc to produce final document
 
 
 ---
+class: inverse
 # Summary
+
+- No free lunch: 'Data Research' is complex!
+
+- 'Data Research' is software development, be smart and use their tools!
+
+- Reproducibility of complex analyses paramount to enable thorough review and reuse!
+
+- Literate programming can ease analyst/investigator communication by 
+streamlining reliable report generation
+
+- Data hosting + code hosting + containerization + version control can facilitate
+collaboration on complex projects
+
+- Better code quality `\(\leadsto\)` more enjoyable coding + more confidence in
+results
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
