@@ -3,3 +3,9 @@
 .Rproj.user/
 esicm-workshop-2019.Rproj
 .ipynb_checkpoints/
+.Rhistory
+
+report.pdf
+analysis-notebook.html
+
+.snakemake

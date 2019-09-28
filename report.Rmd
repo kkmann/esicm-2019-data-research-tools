@@ -1,10 +1,44 @@
 ---
-title: "Literate Programming with R and Python"
+title:    "Literate Programming with R and Python"
 subtitle: "by example of TensorFlow MNIST Tutorial"
-author: "Kevin Kunzmann"
-date: "02/10/2018"
-output: pdf_document
+author:   "Kevin Kunzmann"
+date:     "`r Sys.time()`"
+output:   pdf_document
 ---
+
+
+
+
+
+```{r r-setup}
+options(tidyverse.quiet = TRUE)
+knitr::opts_chunk$set(echo = TRUE)
+
+library(reticulate)
+library(tidyverse, warn.conflicts = FALSE)
+
+random_seed <- 42L
+n_epochs    <-  5L
+```
+
+```{python supress-python-warnings, include=FALSE}
+# supress some warnings popping up due to transition to tensorflow 2.0
+import sys
+if not sys.warnoptions:
+    import os, warnings
+    warnings.simplefilter("ignore") # Change the filter in this process
+    os.environ["PYTHONWARNINGS"] = "ignore" # Also affect subprocesses
+
+```
+
+```{python python-setup}
+import tensorflow as tf
+import numpy as np
+
+tf.set_random_seed(r.random_seed)
+```
+
+
 
 
 
@@ -25,28 +59,6 @@ The tutorial itself is using python/tensorflow/keras but final plotting is
 done in R.
 
 
-
-## Setup
-
-```{r r-setup}
-options(tidyverse.quiet = TRUE)
-knitr::opts_chunk$set(echo = TRUE)
-
-library(reticulate)
-library(tidyverse, warn.conflicts = FALSE)
-
-random_seed <- as.integer(42)
-n_epochs    <- as.integer(3)
-```
-
-
-
-```{python python-setup, }
-import tensorflow as tf
-import numpy as np
-
-tf.set_random_seed(r.random_seed)
-```
 
 
 
@@ -74,7 +86,7 @@ x_train, x_test = x_train / 255.0, x_test / 255.0
 A sequential [Keras](https://keras.io/) neural network model with dropout layer
 is used as classification model.
 
-```{python}
+```{python, warning=FALSE, message=FALSE}
 model = tf.keras.models.Sequential([
     tf.keras.layers.Flatten(),
     tf.keras.layers.Dense(512, activation=tf.nn.relu),
@@ -109,28 +121,31 @@ Switching to R, we can print access the test performance by calling
 'py$performance' via the magic of R's 'reticulate' package.
 The final test-set accuracy is `r py$performance[2]`.
 
-Using the R package [ggplot2](https://ggplot2.tidyverse.org/) grammar-of-graphics style plotting of accuracy over training epochs is a breeze:
+Using the R package [ggplot2](https://ggplot2.tidyverse.org/) 
+grammar-of-graphics style plotting of accuracy over training epochs is a breeze:
 
 ```{r, fig.cap="Accuracy over training epochs."}
-data_frame(
-  epoch    = 1:n_epochs,
-  accuracy = py$history$history$acc %>% as.numeric(),
-) %>% 
+tibble(
+      epoch    = 1:n_epochs,
+      accuracy = py$history$history$acc %>% as.numeric(),
+  ) %>% 
   ggplot(aes(epoch, accuracy)) +
-    geom_point() +
-    geom_line()
+      geom_point() +
+      geom_line()
 ```
 
 ```{r, fig.cap="First training sample."}
-melt(py$x_train[1, , ], ) %>% 
-  ggplot(aes(Var2, Var1, fill = value)) +
-    geom_tile() +
-    scale_y_reverse() +
-    theme_void() +
-    scale_fill_gradient(low = "white", high = "black") +
-    coord_fixed() +
-    guides(fill = FALSE) +
-    theme(panel.border = element_rect(color = "black"))
+reshape2::melt(py$x_train[1, , ], ) %>% 
+    ggplot(aes(Var2, Var1, fill = value)) +
+        geom_tile() +
+        scale_y_reverse() +
+        theme_void() +
+        scale_fill_gradient(low = "white", high = "black") +
+        coord_fixed() +
+        guides(fill = FALSE) +
+        theme(panel.border = element_rect(color = "black"))
 ```
 
-For more details see [knitr](https://yihui.name/knitr/), [pandoc](https://pandoc.org/), and [other language engines in RMarkdown](https://bookdown.org/yihui/rmarkdown/language-engines.html).
+For more details see [knitr](https://yihui.name/knitr/), 
+[pandoc](https://pandoc.org/), and 
+[other language engines in RMarkdown](https://bookdown.org/yihui/rmarkdown/language-engines.html).
