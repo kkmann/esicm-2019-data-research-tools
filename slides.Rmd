@@ -20,13 +20,13 @@ options(htmltools.dir.version = FALSE)
 
 # Who am I?
 
-* Mathematician/Statistician with keen interest in 'Data Science' and machine (deep) learning
+* Mathematician/Statistician with keen interest in 'Data Science' and (deep) machine learning
 
 * Worked several years as analyst in two multi-centric studies: 4C and CENTER-TBI
 
 * Convinced that open science/source is the future
 
-* Sometimes frustrated by the adoption of modern *tooling* esp. in academia
+* Sometimes frustrated by the adoption of modern *tooling* in academia
 
 
 
@@ -83,7 +83,12 @@ class: center, middle
 
 - quality control - reproducibility? 
 
-<br>
+
+
+
+
+---
+class: inverse, middle
 
 > *Data research is essentially about writing a piece of software that
 turns data into a manuscript $\leadsto$ adopt lessons learnt from software 
@@ -170,7 +175,18 @@ as equals
 - can be exported to .pdf/.html/etc.
 
 
-DEMO
+
+
+---
+class: inverse, middle
+# Demo
+
+1. open analysis-notebook.ipynb
+2. execute code 'chunks' (focus and shift + enter)
+3. export to pdf/html/... via menu bar
+
+
+
 
 
 ---
@@ -203,7 +219,7 @@ Cons
 
 
 ---
-# One step further: markdown + pandoc
+# One step further: markdown + knitr + pandoc
 
 <iframe 
     src="https://markdown-it.github.io/"
@@ -215,11 +231,11 @@ Cons
 
 
 ---
-# One step further: markdown + pandoc
+# One step further: markdown + knitr + pandoc
 
-- this presentation is authored in a markdown flavor!
+- this presentation is authored in markdown (`slides.Rmd`)!
 
-- easy to use, source document is readable even wirth just a text editor
+- easy to use, source document is readable even with just a text editor
 
 - minimal subset of formatting options can be converted to richer formats via
 pandoc (+ templates)
@@ -237,9 +253,11 @@ pandoc (+ templates)
 - only need a tool to capture code expressions in markdown file and write
 outputs back, then used pandoc to produce final document
 
-- knitr for R, pweave for Python
+- knitr primarily for R, pweave for Python
 
 - knitr also supports Python (and even R/Python mixed sessions!)
+
+
 
 
 
@@ -260,11 +278,13 @@ outputs back, then used pandoc to produce final document
 
 - often intermediate files, data sets used by multiple plots etc
 
-- interdependent steps, need to maintain right order
+- interdependent steps, need to maintain right order of execution
 
 - difficult to update everything if something changes early on
 
-- welcome to workflow hell
+- long running steps should be cached during development
+
+- welcome to workflow hell!
 
 
 
@@ -292,9 +312,9 @@ outputs back, then used pandoc to produce final document
 
 - python tool inspired by GNU make
 
-- represents workflows as DAGs, automatically takes care of running jobs in parallel, caching etc
+- represents workflows as DAGs, automatically takes care of running jobs in parallel, caching etc.
 
-- can be used with slurm scheduler to exploit parallelism on a slurm cluster
+- can be used with slurm scheduler to exploit parallelism on an HPC slurm cluster
 
 - python-like syntax, easy to learn
 
