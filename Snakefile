@@ -63,7 +63,6 @@ rule data:
         rm mnist.zip
         """
 
-
 rule container:
     output:
         "container.sif"

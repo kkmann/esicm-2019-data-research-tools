@@ -1,5 +1,7 @@
 *.pdf
 *.html
+slides_files
+mnist
 
 .Rproj.user/
 esicm-workshop-2019.Rproj

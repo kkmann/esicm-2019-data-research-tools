@@ -20,20 +20,20 @@ options(htmltools.dir.version = FALSE)
 
 # Who am I?
 
-* Mathematician/Statistician with keen interest in 'Data Science' and (deep) machine learning
+* **statistician** interested in 'Data Science' and (deep) machine learning
 
-* Worked several years as analyst in two multi-centric studies: 4C and CENTER-TBI
+* experience as analyst in multi-centric studies, e.g. 4C and CENTER-TBI
 
-* Convinced that open science/source is the future
+* convinced that **open science/source is the future**!
 
-* Sometimes frustrated by the adoption of modern *tooling* in academia
+* sometimes frustrated by the adoption of **modern tooling in academia**
 
 
 
 
 
 ---
-class: inverse, middle
+class: middle
 # Outline
 
 1. Where are we headed? 
@@ -48,14 +48,29 @@ class: inverse, middle
 
 5. Dependency Management
 
-6. Demo
+
+
+---
+class: middle
+# Concept
+
+- time constraints: **tour'd horizon**
+
+- **interactive**: follow along with your own cloud instance of the code at:
+<br> [**`https://bit.ly/2nAlE3v`**](https://bit.ly/2nAlE3v)
+
+- **ask questions**! (maybe hold for later?)
+
+- get **all materials** at: <br> [**`https://github.com/kkmann/esicm-2019-data-research-tools`**](https://github.com/kkmann/esicm-2019-data-research-tools)
+
+- feel free to raise **issues/suggestions on GitHub.com!** (more on that later)
 
 
 
 
 
 ---
-# Data research as software development
+# Data research is software development
 
 - modern empricial research is **highly data-driven**
 
@@ -127,7 +142,7 @@ class: inverse, middle
 
 
 ---
-# 'Data is the new oil' - but...
+# Data might be new oil, but...
 
 .pull-left[
 
@@ -145,9 +160,9 @@ class: inverse, middle
 
 - must be handled with care 
 
-- sticky if raw, must be processed (curated)
+- sticky if raw, must be processed
 
-- requires huge infrastructure + maintainance
+- requires infrastructure + maintainance
 
 ]
 
@@ -169,7 +184,7 @@ class: inverse, middle
 
 - provide metadata: units, descriptions, labels
 
-- ensure continuous **support/maintainance over the entire project timeline**
+- ensure continuous **maintainance over the entire project timeline**
 
 - put more effort and money in **data curation/quality control**!
 
@@ -194,27 +209,48 @@ of literature. Hence, my title: 'Literate Programming'."* Donald Knuth, 1984
 ---
 # Literate Programming
 
-- script file with code + comments: **ugly**, no output
+.pull-left[
 
-- 'literate program': **code, output, and documentation are equally** important
+## Code + comments
 
-- prime example 'notebooks' (**Jupyter Notebook**): 
+- code first
+
+- hard to read/understand for non-coders
+
+- figures/tables are stored on hard drive
+
+- reports need to be compiled separately
+
+]
+
+.pull-right[
+
+## 'literate program'
+
+- code, documentation, and output are equal
+
+- code and text in same source file, results are embedded automatically on execution
+
+- example: **Jupyter Notebook**: 
   - **interactive** cell-style programming
-  - text can be authored with **markdown**
-  - can be **exported** to .pdf/.html/...
+  - text authored with **markdown**
+  - **exportable** to .pdf/.html/...
+  
+]
+
+
+
 
 
 
 
 ---
 class: inverse, middle
-# Demo: Jupyter Notebook
+## Demo: [`https://bit.ly/2mAyOxn`](https://bit.ly/2mAyOxn)
 
-1. go to [**`https://bit.ly/2mAyOxn`**](https://bit.ly/2mAyOxn)
+1. execute code 'chunks' (focus and shift + enter)
 
-2. execute code 'chunks' (focus and shift + enter)
-
-3. export via `File/Export notebook as`
+2. export via `File/Export notebook as`
 
 
 
@@ -227,13 +263,13 @@ class: inverse, middle
 
 ## Pros
 
-1. mix text/output with code
+- mix text/output with code
 
-2. export to multiple formats
+- export to multiple formats
 
-3. interactive coding style 
+- interactive coding style 
 
-4. support most common scripting languages
+- support most common scripting languages
 
 ]
 
@@ -241,11 +277,11 @@ class: inverse, middle
 
 ## Cons
 
-1. plain notebook file not human-readable (json metadata)
+- plain notebook file not human-readable (json metadata)
 
-2. interactivity: order-of-execution errors
+- interactivity: order-of-execution errors
 
-3. limited formatting flexibility
+- limited formatting flexibility
 
 ]
 
@@ -263,22 +299,23 @@ class: inverse, middle
 ---
 # Literate programming with code-chunks
 
-- this presentation is authored in markdown (`slides.Rmd`)!
+- **this presentation** is authored in markdown (`slides.Rmd`)!
 
 - easy to use
 
-- source document is readable even with just a text editor
+- source document is readable, even with a plain text editor
 
-- rich output with templates
+- **rich output** with templates
 
 ### Process:
 
-1. combine markdown text with code in 'chunks'
-2. run code chunks with appropriate scripting language (knitr)
-3. capture output (text/figures) in extended markdown file (knitr)
-4. convert to desired output format using pandoc (allows templates!)
+1. combine **markdown** text with code in 'chunks' (.Rmd files)
 
+2. run code chunks with appropriate scripting language (**knitr**)
 
+3. capture output (text/figures) in extended markdown file (**knitr**)
+
+4. convert to desired output format using **pandoc** (allows templates!)
 
 
 
@@ -318,13 +355,11 @@ plot(cars)
 
 ---
 class: inverse, middle
-# Demo
+## Demo: [`https://bit.ly/2nAlE3v`](https://bit.ly/2nAlE3v)
 
-1. go to **`https://bit.ly/2nAlE3v`**
+1. open file `report.Rmd`
 
-2. open file `report.Rmd`
-
-3. 'knit' it (button above .Rmd file)
+2. 'knit' it (button above .Rmd file)
 
 
 
@@ -353,7 +388,7 @@ class: inverse, middle
 
 
 
-### Solution: Workflow automation
+### Solution: workflow automation
 
 - analysis = program mapping **data $\to$ outputs**
 
@@ -365,30 +400,24 @@ class: inverse, middle
 
 
 ---
-# Example: snakemake
+# Example: [snakemake](https://snakemake.readthedocs.io/en/stable/)
 
-- python tool inspired by GNU make
+- python tool inspired by [GNU make](https://www.gnu.org/software/make/)
 
 - python-like syntax, easy to learn
 
-- represents workflows as DAGs
+- **automatic caching** (via DAG inference)
 
-- automatically caching
+- can run independent steps in **parallel**
 
-- can run independent steps in parallel 
-
-- High Performance Computing (HPC) support via slurm
-
-- individual steps can be run in containers via singularity
+- **High Performance Computing** (HPC) support via [slurm](https://slurm.schedmd.com/documentation.html)
 
 
 
 
 ---
 class: inverse, middle
-# Demo
-
-1. go to [**`https://bit.ly/2lXMiTg`**](https://bit.ly/2lXMiTg)
+## Demo: [`https://bit.ly/2lXMiTg`](https://bit.ly/2lXMiTg)
 
 2. have a look at the `Snakefile`
 
@@ -396,7 +425,7 @@ class: inverse, middle
 
 4. execute `snakemake --dag | dot -Tpdf > dag.pdf` 
 
-5. open the file `dag.pdf`
+5. refresh file panel and open the file `dag.pdf`
 
 6. execute the command `snakemake`
 
@@ -412,12 +441,12 @@ class: middle, inverse
 # Version Control
 
 ---
-# Version Control - git/GitHub
+# Version control
 
 
 .pull-left[
 
-## git
+## [git](https://git-scm.com/)
 
 * **command line tool**, VCS [1]
 
@@ -433,7 +462,7 @@ class: middle, inverse
 
 .pull-right[
 
-## Github/GitLab/etc.
+## [GitHub](https://github.com/)/[GitLab](https://gitlab.com/)/etc.
 
 * code hosting
 
@@ -458,15 +487,15 @@ class: middle, inverse
 
 - visit, look around
 
-- please, do raise issues with feedback/suggestions/questions
+- please, do open issues with **feedback/suggestions/questions**
 
 - pull requests welcome!
 
-### Not enough time for in-depth git x(
+### Not enough time for in-depth git, cf. [The Turing Way](https://the-turing-way.netlify.com)
 
-- [#TheTuringWay/version_control](https://the-turing-way.netlify.com/version_control/version_control.html)
+- [version control](https://the-turing-way.netlify.com/version_control/version_control.html)
 
-- [#TheTuringWay/collaborating_github](https://the-turing-way.netlify.com/collaborating_github/collaborating_github.html)
+- [collaborating on GitHub.com](https://the-turing-way.netlify.com/collaborating_github/collaborating_github.html)
 
 
 
@@ -487,11 +516,11 @@ class: inverse, middle
 
 - what could go wrong?
 
-- lots of software dependencies (R/Python/tensorflow/snakemake/LaTeX/...)
+- **lots of software dependencies** (R/Python/tensorflow/snakemake/LaTeX/...)
 
-- open source software evolves quickly 
+- open source **software evolves** quickly 
 
-- need to 'freeze' entire computing framework
+- need to **'freeze' computing environment**
 
 - package managers only work with pre-existing packages, trouble capturing 
 system-level dependencies
@@ -500,17 +529,17 @@ system-level dependencies
 
 
 ---
-# Solution: Containerization (with singularity)
+# Solution: Containerization (with [singularity](https://sylabs.io/))
 
-- better: isolate everything above the raw operating system (linux!)
+- **isolate everything above the raw operating system** (linux!)
 
-- think: lightweight virtual machine 
+- think: **lightweight virtual machine**
 
 - no 'hard drive'
 
-- no hardware virtualization (use host system) - fast!
+- no hardware virtualization (use host system) - **fast**!
 
-- images are single files, easily sharable!
+- **system images are single files**, easily sharable!
   
 - those must be complicated...
 
@@ -546,7 +575,7 @@ R -e "install.packages(c('xaringan', 'reticulate', 'tidyverse'))"
   
 ---
 class: inverse, middle
-# ... and what about building those?
+# ... and what about building containers?
 
 ```{bash, eval=FALSE}
 singularity build container.sif container.def
@@ -565,7 +594,7 @@ singularity build container.sif container.def
  
 .pull-left[
 
-## Docker
+## [Docker](https://www.docker.com/)
 
 * made containers 'sexy'
 
@@ -579,7 +608,7 @@ singularity build container.sif container.def
 
 .pull-right[
 
-## Singularity
+## [Singularity](https://sylabs.io/)
 
 * 'Docker for HPC'
 
@@ -615,20 +644,29 @@ class: middle, center
 
 
 ---
-class: inverse
 # Summary
 
-- No free lunch: 'Data Research' is complex!
+- No free lunch: 'Data Research' is incresingly complex!
 
-- 'Data Research' is software development, be smart and use their tools!
+- **'Data Research' is software development**, be smart and use their tools!
 
-- Reproducibility of complex analyses paramount to enable thorough review and reuse!
+- **Reproducibility** of complex analyses paramount to enable thorough review and reuse!
 
-- Literate programming can ease analyst/investigator communication by 
+- Literate programming can ease analyst/investigator **communication** by 
 streamlining reliable report generation
 
 - Data hosting + code hosting + containerization + version control can facilitate
-collaboration on complex projects
+**collaboration** on complex projects
 
-- Better code quality $\leadsto$ more enjoyable coding + more confidence in
-results
+- Better code quality $\leadsto$ more enjoyable coding + more **confidence in
+results**
+
+
+---
+class: inverse, middle
+# Thanks to mybinder.org!
+
+- https://mybinder.org provides infrastructure to run reproducible computing environments
+in the cloud
+
+- see https://mybinder.readthedocs.io/en/latest/ for details on how it works

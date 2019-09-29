@@ -1,4 +1,7 @@
+snakemake container
+
 mkdir -p logs
+
 snakemake \
     --jobs 99 \
     --use-singularity \
