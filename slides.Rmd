@@ -113,7 +113,7 @@ turns data into a manuscript. <br> <br> $\leadsto$ Be smart, adopt lessons learn
 
 ]
 
-## References
+### References
 
 - online WiP compendium on OS & RR: [The Turing Way](https://the-turing-way.netlify.com/introduction/introduction)
 
@@ -394,77 +394,122 @@ class: inverse, middle
 
 3. open a new terminal window
 
-4. execute `snakemake --dag | dot -Tpdf > dag.pdf` and open the file `dag.pdf`
+4. execute `snakemake --dag | dot -Tpdf > dag.pdf` 
 
-4. execute the command `snakemake` in the terminal
+5. open the file `dag.pdf`
 
+6. execute the command `snakemake`
 
+7. execute the command again!
 
-
-
----
-# Version Control (git)
-
-- time machine for entire projects
-
-- distributed (no central server)
-
-- robust (designed for wortk on Linux kernel, now also used by Microsoft!)
-
-- **the** standard VCS .
-
+8. delete the folder `mnist` and execute again
 
 
 
 
 ---
-# Code hosting 
+class: middle, inverse
+# Version Control
 
-- git is a command line tool
+---
+# Version Control - git/GitHub
 
-- GitHub.com/GitLab.com are code hosting platforms that make it more productive
 
-- 
+.pull-left[
 
+## git
+
+* **command line tool**, VCS [1]
+
+* VCS = **'project time machine'**
+
+* versions are cryptographically locked (**immutable**)
+
+* **distributed** (no central server, encourages collaboration)
+
+* **the** standard VCS
+
+]
+
+.pull-right[
+
+## Github/GitLab/etc.
+
+* code hosting
+
+* web services to make `git` more usable
+
+* collaboration features (issues, projects, ...)
+
+]
+
+<br>
+
+.footnote[
+[1] VCS = Version Control System
+]
+
+
+
+---
+# Example: this workshop!
+
+- https://github.com/kkmann/esicm-2019-data-research-tools
+
+- visit, look around
+
+- please, do raise issues with feedback/suggestions/questions
+
+- pull requests welcome!
+
+### Not enough time for in-depth git x(
+
+- [#TheTuringWay/version_control](https://the-turing-way.netlify.com/version_control/version_control.html)
+
+- [#TheTuringWay/collaborating_github](https://the-turing-way.netlify.com/collaborating_github/collaborating_github.html)
 
 
 
 
 ---
-# GitHub.com example repo
-
-[demo, show features]
-
-
+class: inverse, middle
+# Dependency Management
 
 
 
 ---
-# Dependency management
+# Software Dependencies
 
-- source code is fine versioned
-
-- workflow is automated
+- we have:
+  * literate programs/reports
+  * automated workflow
+  * everything under version control
 
 - what could go wrong?
 
 - lots of software dependencies (R/Python/tensorflow/snakemake/LaTeX/...)
 
-- all changing quickly - how can we make sure that the exact computing environment can be replicated in the future?
+- open source software evolves quickly 
 
-- package managers not sufficient since cross-language/system level dependencies not captured (openssl version e.g.)
+- need to 'freeze' entire computing framework
+
+- package managers only work with pre-existing packages, trouble capturing 
+system-level dependencies
 
 
 
 
 ---
-# Solution: Containerization
+# Solution: Containerization (with singularity)
 
-- better: isolate everything but the bare operating system (linux!)
+- better: isolate everything above the raw operating system (linux!)
 
 - think: lightweight virtual machine 
+
 - no 'hard drive'
+
 - no hardware virtualization (use host system) - fast!
+
 - images are single files, easily sharable!
   
 - those must be complicated...
@@ -474,41 +519,76 @@ class: inverse, middle
 
 
 ---
-# Singularity container file
+# Singularity Definition File
 
-[example]
+```
+Bootstrap: docker
+From: rocker/verse:latest
+
+%post
+apt-get update
+apt-get -y install python3-pip
+
+python3 -m pip install \
+    jupyter nbconvert \
+    numpy tensorflow keras \
+    virtualenv \
+    snakemake
+    
+export JUPYTER_CONFIG_DIR=/usr/local/etc/jupyter/
+export JUPYTER_PATH=/usr/local/share/jupyter/
+
+R -e "install.packages(c('IRkernel', 'tensorflow'))"
+R -e "IRkernel::installspec(prefix = '/usr/local', user = FALSE)"
+R -e "tensorflow::install_tensorflow()"
+R -e "install.packages(c('xaringan', 'reticulate', 'tidyverse'))"
+```
   
-  
-  
+---
+class: inverse, middle
+# ... and what about building those?
+
+```{bash, eval=FALSE}
+singularity build container.sif container.def
+```
+
+- that's it!
+
+- creates single file `container.sif` that can be shared
+
+- install singularity, requires linux (virtual machine?)
+
+- our container is stored at https://zenodo.org/record/3464160
   
   
 ---
-# Singularity vs. Docker
-
+ 
 .pull-left[
 
-Docker
+## Docker
 
-1. made containers 'sexy'
+* made containers 'sexy'
 
-2. widely used by industry to run microservices
+* widely used by industry to run microservices
 
-3. requires root access to build and **run** $\leadsto$ incompatible with HPC systems
+* requires **root access to build and run** <br> $\leadsto$ incompatible with HPC
+
+* not intended/suitable for scientific purposes
 
 ]
 
 .pull-right[
 
-Singularity
+## Singularity
 
-1. Relatively new (2016) 'Docker for HPC'
+* 'Docker for HPC'
 
-2. Key difference: **root only required for building** containers!
+* **root only for building**! <br> $\leadsto$ compatible with HPC
 
-3. Geared towards HPC: reproducible, portable computing environment - run 
+* reproducible, portable computing environment - run 
 arbitrary software on your HPC without bothering your admin! 
 
-4. Integrates with workflow management engines (snakemake, nextflow, etc.) and
+* integrates with workflow management engines (snakemake, nextflow, etc.) and
 HPC
 
 ]
@@ -516,11 +596,21 @@ HPC
 
 
 ---
-class: inverse
-# Live demo on our HPC
+class: inverse, middle
+# Demo
 
-...
+- nested containers are not a good idea
 
+- our interactive seesions run in containers
+
+- cannot provide interactive demo, install singularity and try at home!
+
+- here: quick demo on our HPC
+
+
+---
+class: middle, center
+# HPC Demo
 
 
 

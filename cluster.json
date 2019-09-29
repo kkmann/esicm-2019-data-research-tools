@@ -1,0 +1,14 @@
+{
+    "__default__" :
+    {
+        "account"       : "MRC-BSU-SL2-CPU",
+        "partition"     : "skylake",
+        "time"          : "02:00:00",
+        "ntasks"        : "1",
+        "nodes"         : "1",
+        "ncpu"          : "1",
+        "name"          : "{rule}__{wildcards}",
+        "output"        : "logs/{rule}__{wildcards}.out",
+        "error"         : "logs/{rule}__{wildcards}.out"
+    }
+}
