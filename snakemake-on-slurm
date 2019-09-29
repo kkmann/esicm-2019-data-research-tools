@@ -1,6 +1,8 @@
 mkdir -p logs
-nohup snakemake $1 \
+snakemake \
     --jobs 99 \
     --use-singularity \
     --cluster-config cluster.json \
-    --cluster "sbatch -A {cluster.account} -p {cluster.partition} --ntasks {cluster.ntasks} --cpus-per-task {cluster.ncpu} --nodes {cluster.nodes} -t {cluster.time} --job-name {cluster.name} --output {cluster.output} --error {cluster.error}" &
+    --cluster "sbatch -A {cluster.account} -p {cluster.partition} --ntasks {cluster.ntasks} --cpus-per-task {cluster.ncpu} --nodes {cluster.nodes} -t {cluster.time} --job-name {cluster.name} --output {cluster.output} --error {cluster.error}" \
+    --latency-wait 30 \
+    $1

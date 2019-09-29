@@ -60,6 +60,7 @@ rule data:
         """
         wget -O mnist.zip https://zenodo.org/record/3464160/files/mnist.zip?download=1
         unzip mnist.zip
+        rm mnist.zip
         """
 
 
