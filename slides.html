@@ -170,24 +170,27 @@ of literature. Hence, my title: 'Literate Programming'."* Donald Knuth, 1984
 ---
 # Literate Programming
 
-- script file: code + comments, ugly
+- script file with code + comments - ugly, no output
 
-- 'literate program': present code, output (graphs, tables), and explanatory text
+- 'literate program': code, output (graphs, tables), and explanatory text
 as equals
 
-- prime example 'notebooks': interactive cell-style programming
-
-- can be exported to .pdf/.html/etc.
+- prime example 'notebooks' (Jupyter Notebook): 
+  - interactive cell-style programming
+  - text can be authored with markdown
+  - can be exported to .pdf/.html/...
 
 
 
 
 ---
 class: inverse, middle
-# Demo
+# Demo: Jupyter Notebook
 
 1. open analysis-notebook.ipynb
+
 2. execute code 'chunks' (focus and shift + enter)
+
 3. export to pdf/html/... via menu bar
 
 
@@ -199,81 +202,109 @@ class: inverse, middle
 
 .pull-left[
 
-Pros
+## Pros
 
-1. can be exported to .pdf/.html/etc.
+1. mix text/output with code
 
-1. interactive coding style 
+2. export to multiple formats
 
-1. Edit Markdown source and refresh browser to see updated slides;
+3. interactive coding style 
+
+4. support most common scripting languages
+
+]
+
+
+
+.pull-right[
+
+## Cons
+
+1. plain notebook file not human-readable (json metadata)
+
+2. interactivity: order-of-execution errors
+
+3. limited formatting flexibility
+
+]
+
+
+
+
+
+---
+class: inverse, middle
+# markdown + knitr + pandoc
+
+
+
+
+---
+# Literate programming with code-chunks (1)
+
+- this presentation is authored in markdown (`slides.Rmd`)!
+
+- easy to use
+
+- source document is readable even with just a text editor
+
+- rich output with templates
+
+### Process:
+
+1. combine markdown text with code in 'chunks'
+2. run code chunks with appropriate scripting language (knitr)
+3. capture output (text/figures) in extended markdown file (knitr)
+4. convert to desired output format using pandoc (allows templates!)
+
+
+
+
+
+
+
+
+---
+# Literate programming with code-chunks (2)
+
+.pull-left[
+
+## Input markdown + code
+
+````
+Some text
+```{r demo-chunk}
+plot(cars)
+```
+````
+
 ]
 
 .pull-right[
 
-Cons
+## Output (html)
 
-1. usually plain notebook files in cryptic format (need custom software to display)
+Some text
+![](slides_files/figure-html/unnamed-chunk-1-1.png)&lt;!-- --&gt;
 
-1. interactivity can lead to order-of-execution errors
-
-1. limited formatting flexibility
 ]
 
 
 
 
 
----
-# One step further: markdown + knitr + pandoc
-
-&lt;iframe 
-    src="https://markdown-it.github.io/"
-    width="1000px"
-    height="500px"&gt;
-&lt;/iframe&gt;
-
-
-
 
 ---
-# One step further: markdown + knitr + pandoc
-
-- this presentation is authored in markdown (`slides.Rmd`)!
-
-- easy to use, source document is readable even with just a text editor
-
-- minimal subset of formatting options can be converted to richer formats via
-pandoc (+ templates)
-
-- allows anthing from fancy slides to polished .pdf reports!
-
-
-
-
----
-# One step further: markdown + pandoc
-
-- pandoc: convert markdown to any output format (.html, .pdf (LaTeX), .docx)
-
-- only need a tool to capture code expressions in markdown file and write
-outputs back, then used pandoc to produce final document
-
-- knitr primarily for R, pweave for Python
-
-- knitr also supports Python (and even R/Python mixed sessions!)
+class: inverse, middle
+# Demo
 
 
 
 
 
 ---
-# Example: pdf report with knitr + Python
-
-[live demo in binder]
-
-
-
-
+class: inverse, middle
+# Workflow Automation
 
 
 ---
@@ -432,6 +463,7 @@ HPC
 
 
 ---
+class: inverse
 # Live demo on our HPC
 
 ...

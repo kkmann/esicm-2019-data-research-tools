@@ -12,3 +12,8 @@ analysis-notebook.html
 
 Vagrantfile
 .vagrant
+
+.DS_Store
+
+*.sif
+*.zip
