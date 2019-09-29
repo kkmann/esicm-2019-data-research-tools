@@ -4,8 +4,6 @@ rule all:
         "report.pdf",
         "slides.html"
 
-
-
 rule notebook:
     input:
         "analysis-notebook.ipynb",
@@ -21,8 +19,6 @@ rule notebook:
         """
         jupyter nbconvert analysis-notebook.ipynb --to html
         """
-
-
 
 rule report:
     input:
@@ -40,7 +36,6 @@ rule report:
         Rscript -e "rmarkdown::render('report.Rmd')"
         """
 
-
 rule slides:
     input:
        "slides.Rmd"
@@ -53,9 +48,7 @@ rule slides:
         Rscript -e "rmarkdown::render('slides.Rmd')"
         """
 
-
-
-rule download_data:
+rule data:
     output:
         "mnist/x_test.npy",
         "mnist/x_train.npy",
@@ -63,14 +56,15 @@ rule download_data:
         "mnist/y_train.npy"
     shell:
         """
-        R -e "download.file('https://zenodo.org/record/3464160/files/mnist.zip?download=1', 'mnist.zip')"
-        R -e "unzip('mnist.zip')"
+        wget https://zenodo.org/record/3464160/files/mnist.zip?download=1
+        unzip mnist.zip
         """
 
-rule download_container:
+
+rule container:
     output:
         "container.sif"
     shell:
         """
-        R -e "download.file('https://zenodo.org/record/3464160/files/container.sif?download=1', 'container.sif')"
+        wget https://zenodo.org/record/3464160/files/container.sif?download=1
         """

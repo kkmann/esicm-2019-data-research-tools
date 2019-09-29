@@ -1,3 +1,4 @@
 texlive-full
 dvipng
 ghostscript
+graphviz

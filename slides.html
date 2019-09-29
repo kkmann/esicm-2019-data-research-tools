@@ -60,33 +60,17 @@ class: inverse, middle
 
 
 ---
-class: center, middle
-# https://bit.ly/2jT4BYM
-
-&lt;iframe 
-    src="https://hackmd.io/DUTDnbl7RZmGZhQVOski0A?view" 
-    width="1000px" 
-    height="450px"&gt;
-&lt;/iframe&gt; 
-
-
-
-
-
----
 # Data research as software development
 
-- modern empricial research is *highly data-driven*
+- modern empricial research is **highly data-driven**
 
-- make sure that data infrastructure is adequate
+- **multiple stake-holders** (analysts, non-tech experts)
 
-- multiple stake-holders (analysts, non-tech experts)
+- anything beyond absolute basics: **complex analysis scripts**
 
-- anything beyond absolute basics: *complex analysis scripts*
+- **agile development** (changing requirements/hypotheses)
 
-- agile development (changing requirements/hypotheses)
-
-- quality control - reproducibility? 
+- quality control - **reproducibility?**
 
 
 
@@ -96,60 +80,105 @@ class: center, middle
 class: inverse, middle
 
 &gt; *Data research is essentially about writing a piece of software that
-turns data into a manuscript `\(\leadsto\)` adopt lessons learnt from software 
-develoment!*
+turns data into a manuscript. &lt;br&gt; &lt;br&gt; `\(\leadsto\)` Be smart, adopt lessons learnt from software develoment!*
 
 
 
 ---
-# 'Reproducible Research' + 'Open Science'
 
-[TURING WAY]
+.pull-left[
 
+## Reproducible Research
 
+- **credibility/transparency**
+
+- code **re-usability**
+
+- easier **modification/extension**
+
+- facilitates **passing on projects** to others
+
+- easier in the **long run**
+
+]
+
+.pull-right[
+
+## Open Science
+
+- **sharing** results
+
+- independent of reproducibility
+
+- easy data access (minimal restrictions) 
+
+- adds value to reprodicible analysis 
+
+- funding requirement (FAIR)
+
+]
+
+## References
+
+- online WiP compendium on OS &amp; RR: [The Turing Way](https://the-turing-way.netlify.com/introduction/introduction)
+
+- info about [FAIR](https://www.go-fair.org/fair-principles/) (Findable, Accessible, Interoperable, Reusable)
 
 
 ---
-class: inverse, middle, center
+class: inverse, middle
 # 'Data is the new oil'
 
 
 
 ---
-# Data = new oil is the perfect methaphor:
+# 'Data is the new oil' - but...
 
-- need large enough storage facility (data base = tanks)
+.pull-left[
 
-- storage must be accessible (data access = pipelines)
+&lt;img src="figures/cash.jpg" height="200px"&gt; 
 
-- infrastructure must be maintained continuously or becomes 'sticky/stale'
+- valuable
 
-- security!
+- basis for everything we do
 
-- on the first look, all data looks the same but there are different kinds of
-data (and oil!) that cannot be mixed easily (longitudinal, cross sectional)
+]
 
-&gt; Data = new oil is quite a good methaphor since it indicates 
-practical storage/processing problems as well
+.pull-right[
+
+&lt;img src="figures/deepwater.jpg" height="200px"&gt; 
+
+- must be handled with care 
+
+- sticky if raw, must be processed (curated)
+
+- requires huge infrastructure + maintainance
+
+]
+
 
 
 
 ---
 # Data management considerations
 
-- Have a plan and involve domain experts, early!
+- have a plan and **involve domain experts, early**!
 
-- Make sure data bases are flexible enough to adapt to changing requirements 
+- make sure data bases are **flexible** to adapt to **changing requirements**
 
-- Think about storage of intermediate data products
+- think about storage of **intermediate data products**
 
-- Make sure everything is accessible in a systematic way (APIs?)
+- make sure everything is **accessible in a systematic way** 
+  * REST API access?
+  * permission system/privacy?
 
-- Ensure continuous support maintainance over the entire project timeline
+- provide metadata: units, descriptions, labels
 
-- Do not underestimate the effort of data curation!
+- ensure continuous **support/maintainance over the entire project timeline**
 
-- Beware that compex data bases evolve over time, how do you handle versioning/versioned access of your data?
+- put more effort and money in **data curation/quality control**!
+
+- complex data bases evolve over time, provide **versioned access** to data?
 
 
 
@@ -170,15 +199,14 @@ of literature. Hence, my title: 'Literate Programming'."* Donald Knuth, 1984
 ---
 # Literate Programming
 
-- script file with code + comments - ugly, no output
+- script file with code + comments: **ugly**, no output
 
-- 'literate program': code, output (graphs, tables), and explanatory text
-as equals
+- 'literate program': **code, output, and documentation are equally** important
 
-- prime example 'notebooks' (Jupyter Notebook): 
-  - interactive cell-style programming
-  - text can be authored with markdown
-  - can be exported to .pdf/.html/...
+- prime example 'notebooks' (**Jupyter Notebook**): 
+  - **interactive** cell-style programming
+  - text can be authored with **markdown**
+  - can be **exported** to .pdf/.html/...
 
 
 
@@ -187,11 +215,11 @@ as equals
 class: inverse, middle
 # Demo: Jupyter Notebook
 
-1. open analysis-notebook.ipynb
+1. go to [**`https://bit.ly/2mAyOxn`**](https://bit.ly/2mAyOxn)
 
 2. execute code 'chunks' (focus and shift + enter)
 
-3. export to pdf/html/... via menu bar
+3. export via `File/Export notebook as`
 
 
 
@@ -213,8 +241,6 @@ class: inverse, middle
 4. support most common scripting languages
 
 ]
-
-
 
 .pull-right[
 
@@ -240,7 +266,7 @@ class: inverse, middle
 
 
 ---
-# Literate programming with code-chunks (1)
+# Literate programming with code-chunks
 
 - this presentation is authored in markdown (`slides.Rmd`)!
 
@@ -265,7 +291,6 @@ class: inverse, middle
 
 
 ---
-# Literate programming with code-chunks (2)
 
 .pull-left[
 
@@ -298,6 +323,12 @@ Some text
 class: inverse, middle
 # Demo
 
+1. go to **`https://bit.ly/2nAlE3v`**
+
+2. open file `report.Rmd`
+
+3. 'knit' it (button above .Rmd file)
+
 
 
 
@@ -307,52 +338,67 @@ class: inverse, middle
 # Workflow Automation
 
 
+
+
+
 ---
-# Workflow automation
+# Workflows
 
-- complex analyses often require multiple outputs (plots, tables, reports)
+- complex analyses often require **multiple outputs** (plots, tables, reports)
 
-- often intermediate files, data sets used by multiple plots etc
+- often **intermediate files** (data sets)
 
-- interdependent steps, need to maintain right order of execution
+- **interdependent steps**, need to maintain right **order of execution**
 
 - difficult to update everything if something changes early on
 
-- long running steps should be cached during development
-
-- welcome to workflow hell!
+- long running steps should not be run multiple times
 
 
 
+### Solution: Workflow automation
 
+- analysis = program mapping **data `\(\to\)` outputs**
 
----
-# Workflow automation
+- represent **path from data to output as directed (acyclic) graph (DAG)**
 
-- bear in mind: analysis = program to go from data to outputs
-
-- should be possible to just specify what you want and have the program figure out what needs to be done (exploiting shared intermediate output)
-
-- caching is super helpful during **development** not so much for reproducibility
-
-- simple bash script (maybe with if clauses for checking for files) may be sufficient in simple cases
-
-- for anything more serious, use a dedicated workflow engine
-
+- only execute necessary steps, **cache intermediates**
 
 
 
 
 ---
-# snakemake
+# Example: snakemake
 
 - python tool inspired by GNU make
 
-- represents workflows as DAGs, automatically takes care of running jobs in parallel, caching etc.
-
-- can be used with slurm scheduler to exploit parallelism on an HPC slurm cluster
-
 - python-like syntax, easy to learn
+
+- represents workflows as DAGs
+
+- automatically caching
+
+- can run independent steps in parallel 
+
+- High Performance Computing (HPC) support via slurm
+
+- individual steps can be run in containers via singularity
+
+
+
+
+---
+class: inverse, middle
+# Demo
+
+1. go to [**`https://bit.ly/2lXMiTg`**](https://bit.ly/2lXMiTg)
+
+2. have a look at the `Snakefile`
+
+3. open a new terminal window
+
+4. execute the command `snakemake` in the terminal
+
 
 
 
@@ -367,6 +413,8 @@ class: inverse, middle
 - robust (designed for wortk on Linux kernel, now also used by Microsoft!)
 
 - **the** standard VCS .
+
+
 
 
 
@@ -387,6 +435,8 @@ class: inverse, middle
 # GitHub.com example repo
 
 [demo, show features]
+
+
 
 
 
@@ -422,10 +472,14 @@ class: inverse, middle
 
 
 
+
+
 ---
 # Singularity container file
 
 [example]
+  
+  
   
   
   
