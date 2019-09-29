@@ -58,7 +58,7 @@ rule data:
         "mnist/y_train.npy"
     shell:
         """
-        wget -O mnist.zip https://zenodo.org/record/3464160/files/mnist.zip?download=1
+        wget -O mnist.zip https://zenodo.org/record/3464519/files/mnist.zip?download=1
         unzip mnist.zip
         rm mnist.zip
         """
@@ -68,5 +68,5 @@ rule container:
         "container.sif"
     shell:
         """
-        wget -O container.sif https://zenodo.org/record/3464160/files/container.sif?download=1
+        wget -O container.sif https://zenodo.org/record/3464519/files/container.sif?download=1
         """

@@ -560,7 +560,7 @@ apt-get -y install python3-pip
 
 python3 -m pip install \
     jupyter nbconvert \
-    numpy tensorflow keras \
+    numpy tensorflow keras matplotlib\
     virtualenv \
     snakemake
     
@@ -587,7 +587,7 @@ singularity build container.sif container.def
 
 - install singularity, requires linux (virtual machine?)
 
-- our container is stored at https://zenodo.org/record/3464160
+- our container is stored at https://zenodo.org/record/3464519
   
   
 ---
